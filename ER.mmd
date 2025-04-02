@@ -1,0 +1,73 @@
+erDiagram
+    TitleAkas {
+        string titleId PK, FK "Titel-ID"
+        int ordering PK "Sortierung"
+        string title "Titel"
+        string region "Region"
+        string language "Sprache"
+        array types "Typen"
+        array attributes "Eigenschaften"
+        boolean isOriginalTitle "Originaltitel?"
+    }
+
+    TitleBasics {
+        string tconst PK "Titel-ID"
+        string titleType "Typ"
+        string primaryTitle "Haupt-Titel"
+        string originalTitle "Original-Titel"
+        boolean isAdult "18+ Film"
+        date(YYYY) startYear "Startjahr"
+        date(YYYY) endYear "Endjahr"
+        int runtimeMinutes "Dauer"
+        string[] genres "Genres"
+    }
+
+    Crew {
+        string tconst PK, FK "Titel-ID"
+        string[] directors "Regisseure"
+        string[] writers "Autoren"
+    }
+
+    Episode {
+        string tconst PK "Episoden-ID"
+        string parentTConst FK "Titel-ID"
+        int seasonNumber "Staffel-Nr."
+        int episodeNumber "Folgen-Nr."
+    }
+
+    Principal {
+        string tconst PK, FK "Titel-ID"
+        int ordering PK "Sortierung"
+        string nconst PK, FK "Name-ID"
+        string category "Kategorie"
+        string job "Tätigkeit"
+        string characters "Rollenname"
+    }
+
+    Rating {
+        string tconst PK, FK "Titel-ID"
+        float averageRating "Durchschnittliche Bewertung"
+        int numVotes "Bewertungsanzahl"
+    }
+
+    NameBasics {
+        string nconst PK "Name-ID"
+        string primaryName "Rufname des Schauspielers"
+        date(YYYY) birthYear "Geburtsjahr"
+        date(YYYY) deathYear "Todesjahr"
+        string[] primaryProfession "Top 3 Tätigkeiten"
+        array knownForTitles FK "Bekannt für"
+    }
+
+    TitleAkas ||--o{ TitleBasics : is-variant-of
+    Crew ||--o{ TitleBasics : is-crew-of
+    Crew ||--o{ NameBasics : is-crew-member-of
+    Crew ||--o{ NameBasics : is-writer-of
+    Episode ||--o{ TitleBasics : is-episode-of
+    Principal ||--o{ TitleBasics : belongs-to
+    NameBasics ||--o{ Principal : belongs-to
+    Rating ||--o{ TitleBasics : belongs-to
+    NameBasics ||--o{ TitleBasics : known-for
+
+
+
