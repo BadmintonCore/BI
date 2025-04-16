@@ -1,0 +1,109 @@
+classDiagram
+direction BT
+class akas {
+   text title  /* Titel */
+   text region  /* Region */
+   text language  /* Sprache */
+   text types  /* Typen */
+   tinyint(1) isOriginalTitle  /* Originaltitel? */
+   varchar(255) titleId
+   int(11) ordering
+}
+class akas_attributes {
+   varchar(255) title_id
+   int(11) ordering
+   int(11) attribute_id
+}
+class attributes {
+   varchar(255) name
+   int(11) id
+}
+class characters {
+   varchar(255) name
+   int(11) id
+}
+class crew {
+   varchar(255) writer_id
+   varchar(255) title_id
+   varchar(255) director_id
+}
+class episodes {
+   varchar(255) title_id
+   varchar(255) seasonNumber  /* Staffel-Nr. */
+   text episodeNumber  /* Folgen-Nr. */
+   varchar(255) id  /* Episoden-ID */
+}
+class genre {
+   varchar(255) name
+   int(11) id
+}
+class knownForTitle {
+   varchar(255) person_id
+   varchar(255) title_id
+}
+class person_profession {
+   varchar(255) person_id
+   int(11) profession_id
+}
+class persons {
+   text primaryName  /* Rufname des Schauspielers */
+   date birthYear  /* Geburtsjahr */
+   date deathYear  /* Todesjahr */
+   varchar(255) id  /* Name-ID */
+}
+class node12 {
+   varchar(255) person_id  /* Name-ID */
+   text category  /* Kategorie */
+   text job  /* Tätigkeit */
+   varchar(255) titleId
+   int(11) ordering  /* Sortierung */
+}
+class principals_character {
+   varchar(255) title_id
+   int(11) ordering
+   int(11) character_id
+}
+class profession {
+   varchar(255) name
+   int(11) id
+}
+class node8 {
+   varchar(255) title_id
+   double averageRating  /* Durchschnittliche Bewertung */
+   int(11) numVotes  /* Bewertungsanzahl */
+}
+class title {
+   text titleType  /* Typ */
+   text primaryTitle  /* Haupt-Titel */
+   text originalTitle  /* Original-Titel */
+   tinyint(1) isAdult  /* 18+ Film */
+   date startYear  /* Startjahr */
+   date endYear  /* Endjahr */
+   int(11) runtimeMinutes  /* Dauer */
+   varchar(255) id
+}
+class title_genre {
+   varchar(255) title_id
+   int(11) genre_id
+}
+
+node5  -->  title : titleId:id
+akas_attributes  -->  node5 : title_id, ordering:titleId, ordering
+akas_attributes  -->  attributes : attribute_id:id
+akas_attributes  -->  title : title_id:id
+crew  -->  node13 : writer_id:id
+crew  -->  node13 : director_id:id
+crew  -->  title : title_id:id
+episodes  -->  title : title_id:id
+knownForTitle  -->  node13 : person_id:id
+knownForTitle  -->  title : title_id:id
+person_profession  -->  node13 : person_id:id
+person_profession  -->  profession : profession_id:id
+node12  -->  node13 : person_id:id
+node12  -->  title : titleId:id
+principals_character  -->  characters : character_id:id
+principals_character  -->  node12 : title_id, ordering:titleId, ordering
+principals_character  -->  title : title_id:id
+node8  -->  title : title_id:id
+title_genre  -->  genre : genre_id:id
+title_genre  -->  title : title_id:id

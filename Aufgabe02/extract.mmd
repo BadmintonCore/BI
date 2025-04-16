@@ -1,0 +1,56 @@
+classDiagram
+direction BT
+class node4 {
+   text nconst  /* Name-ID */
+   text primaryName  /* Rufname des Schauspielers */
+   int(11) birthYear  /* Geburtsjahr */
+   text deathYear  /* Todesjahr */
+   text primaryProfession  /* Top 3 Tätigkeiten */
+   text knownForTitles  /* Bekannt für */
+}
+class node2 {
+   text titleId  /* Titel-ID */
+   int(11) ordering  /* Sortierung */
+   text title  /* Titel */
+   text region  /* Region */
+   text language  /* Sprache */
+   text types  /* Typen */
+   text attributes  /* Eigenschaften */
+   int(11) isOriginalTitle  /* Originaltitel? */
+}
+class node5 {
+   text tconst  /* Titel-ID */
+   text titleType  /* Typ */
+   text primaryTitle  /* Haupt-Titel */
+   text originalTitle  /* Original-Titel */
+   int(11) isAdult  /* 18+ Film */
+   int(11) startYear  /* Startjahr */
+   text endYear  /* Endjahr */
+   int(11) runtimeMinutes  /* Dauer */
+   text genres  /* Genres */
+}
+class node1 {
+   text tconst  /* Titel-ID */
+   text directors  /* Regisseure */
+   text writers  /* Autoren */
+}
+class node0 {
+   text tconst  /* Episoden-ID */
+   text parentTconst  /* Titel-ID */
+   text seasonNumber  /* Staffel-Nr. */
+   text episodeNumber  /* Folgen-Nr. */
+}
+class node6 {
+   text tconst  /* Titel-ID */
+   int(11) ordering  /* Sortierung */
+   text nconst  /* Name-ID */
+   text category  /* Kategorie */
+   text job  /* Tätigkeit */
+   text characters  /* Rollenname */
+}
+class node3 {
+   text tconst  /* Titel-ID */
+   double averageRating  /* Durchschnittliche Bewertung */
+   int(11) numVotes  /* Bewertungsanzahl */
+}
+
