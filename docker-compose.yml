@@ -1,0 +1,14 @@
+services:
+  data-warehouse:
+    image: mariadb:latest
+    restart: always
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dw
+      MYSQL_USER: dw
+      MYSQL_PASSWORD: dw
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - "3306:3306"
